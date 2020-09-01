@@ -11,15 +11,12 @@ type DBConnector struct {
 	Client *mongo.Client
 }
 
-func (dbc *DBConnector) Init(dbtype string) bool {
-	if dbtype == "mongodb" {
-		clientOptions := options.Client().ApplyURI("mongodb://mongodb:27017")
-		client, err := mongo.Connect(context.TODO(), clientOptions)
-		if err != nil {
-			log.Fatal(err)
-		}
-		dbc.Client = client
-		return true
+func (dbc *DBConnector) Init() bool {
+	clientOptions := options.Client().ApplyURI("mongodb://localhost:27017/")
+	client, err := mongo.Connect(context.TODO(), clientOptions)
+	if err != nil {
+		log.Fatal(err)
 	}
-	return false
+	dbc.Client = client
+	return true
 }
