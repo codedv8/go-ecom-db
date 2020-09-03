@@ -1,4 +1,4 @@
-package EComDB
+package ecomdb
 
 import (
 	"context"
